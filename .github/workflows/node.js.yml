@@ -1,0 +1,98 @@
+# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs
+# https://cloud.tencent.com/developer/article/2318338
+
+name: Node.js CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [14.x]
+        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Use Node.js 14
+      uses: actions/setup-node@v4
+      with:
+        node-version: 14
+
+    - name: Run Command in manager
+      run: |
+        echo "Current directory is $(pwd)"
+        # 在这里执行你的命令
+        npm install
+        npm run build
+      working-directory: manager
+    - name: Run Command in buyer
+      run: |
+        echo "Current directory is $(pwd)"
+        # 在这里执行你的命令
+        npm install
+        npm run build
+      working-directory: buyer
+    - name: Run Command in im
+      run: |
+        echo "Current directory is $(pwd)"
+        # 在这里执行你的命令
+        npm install
+        npm run build
+      working-directory: im
+    - name: Run Command in seller
+      run: |
+        echo "Current directory is $(pwd)"
+        # 在这里执行你的命令
+        npm install
+        npm run build
+      working-directory: seller
+
+
+    - name: Copy Directory
+      run: |
+        mkdir -p dist/manager
+        cp -r manager/dist/* dist/manager
+        mkdir -p dist/buyer
+        cp -r buyer/dist/* dist/buyer
+        mkdir -p dist/im
+        cp -r im/dist/* dist/im
+        mkdir -p dist/seller
+        cp -r seller/dist/* dist/seller
+    # ssh-keygen -m PEM -t rsa -b 4096
+    # cat id_rsa.pub >> authorized_keys
+    - name: Push Folder to Server
+      uses: easingthemes/ssh-deploy@main
+      env:
+        # 本地.ssh文件下的私钥id_rsa，存在secrets的PRIVATE_KEY中
+        SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+        # 复制操作的参数。"-avzr --delete"意味部署时清空服务器目标目录下的文件
+        ARGS: "-avz --delete"
+        # 你想要上传的文件夹路径
+        SOURCE: "dist/"
+        # 服务器域名/IP
+        REMOTE_HOST: "1.13.245.30"
+        # 服务器默认用户名为root
+        REMOTE_USER: "root"
+        # 通常是22
+        REMOTE_PORT: 22
+        # 远程服务器上的目标路径
+        TARGET: "/opt/lilishop-ui/"
+        EXCLUDE: "/dist/, /node_modules/"
+        SCRIPT_BEFORE: |
+          whoami
+          ls -al
+        SCRIPT_AFTER: |
+          whoami
+          ls -al
+          cd /opt/lilishop-ui/
+          docker build --rm -f ./Dockerfile -t douyin:latest .
+          docker-compose -f docker-compose.yml restart
