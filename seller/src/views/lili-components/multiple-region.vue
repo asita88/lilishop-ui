@@ -215,7 +215,7 @@ export default {
     margin: 0 4px;
   }
 }
-::v-deep .ivu-modal-body {
+/deep/ .ivu-modal-body {
   height: 400px !important;
   overflow: auto;
 }

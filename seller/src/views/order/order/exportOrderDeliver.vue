@@ -201,7 +201,7 @@ img {
     font-size: 28px;
     margin: 10px;
   }
-  ::v-deep .btn {
+  /deep/ .btn {
     margin: 10px;
   }
 }

@@ -64,11 +64,11 @@ export default {
   width: 100%;
 }
 
-::v-deep .ivu-modal {
+/deep/ .ivu-modal {
   overflow: hidden;
   height: 650px !important;
 }
-::v-deep .ivu-modal-body {
+/deep/ .ivu-modal-body {
   width: 100%;
   height: 500px;
   overflow: hidden;

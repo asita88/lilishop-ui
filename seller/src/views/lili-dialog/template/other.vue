@@ -127,7 +127,7 @@ export default {
   text-align: center;
   transition: 0.35s;
   cursor: pointer;
-  ::v-deep p {
+  /deep/ p {
     margin: 10px 0;
   }
   border: 1px solid #ededed;

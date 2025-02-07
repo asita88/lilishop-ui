@@ -654,7 +654,7 @@ table {
   margin: 10px 0;
   padding: 10px;
 
-  ::v-deep span {
+  /deep/ span {
     font-size: 14px;
     text-align: center;
     width: 200px;

@@ -267,7 +267,7 @@ export default {
 }
 
 .ivu-tag-primary{
-  ::v-deep .ivu-tag-dot-inner{
+  /deep/ .ivu-tag-dot-inner{
     background: $theme_color !important;
   }
 }

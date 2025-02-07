@@ -5,9 +5,9 @@
   "description": "lilishop-ui",
   "author": "lili-platform",
   "scripts": {
-    "serve": "SET NODE_OPTIONS=--openssl-legacy-provider && vue-cli-service serve",
-    "build": "SET NODE_OPTIONS=--openssl-legacy-provider && vue-cli-service build",
-    "dev": "SET NODE_OPTIONS=--openssl-legacy-provider && vue-cli-service serve"
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "dev": "vue-cli-service serve"
   },
   "dependencies": {
     "@amap/amap-jsapi-loader": "0.0.7",
@@ -15,7 +15,7 @@
     "axios": "^0.21.1",
     "dplayer": "^1.27.1",
     "js-cookie": "^2.2.1",
-    "sass": "^1.26.5",
+    "node-sass": "^4.14.1",
     "price-color": "^1.0.2",
     "s": "^1.0.0",
     "sass-loader": "^8.0.2",

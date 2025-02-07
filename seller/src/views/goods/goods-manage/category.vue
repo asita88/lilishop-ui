@@ -256,7 +256,7 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-::v-deep .ivu-table-wrapper {
+/deep/ .ivu-table-wrapper {
   overflow: auto;
 }
 .table {

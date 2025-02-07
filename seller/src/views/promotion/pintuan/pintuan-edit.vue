@@ -181,7 +181,7 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-::v-deep .ivu-form-item {
+/deep/ .ivu-form-item {
   padding: 18px 10px !important;
 }
 </style>

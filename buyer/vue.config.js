@@ -70,7 +70,7 @@ module.exports = {
 
     loaderOptions: {
       sass: {
-        prependData: `@import "@/assets/styles/global.scss";` //全局加载scss
+        data: `@import "@/assets/styles/global.scss";` //全局加载scss
       },
       // 向 CSS 相关的 loader 传递选项
       less: {
