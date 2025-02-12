@@ -420,7 +420,7 @@ img {
   overflow: auto;
   width: 100%;
 }
-::v-deep .ivu-table-wrapper {
+/deep/ .ivu-table-wrapper {
   width: 100%;
 }
 .list {

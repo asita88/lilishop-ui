@@ -172,7 +172,7 @@ export default {
   }
 }
 
-::v-deep .ivu-input {
+/deep/ .ivu-input {
   width: 70px !important;
 }
 
@@ -182,7 +182,7 @@ export default {
 }
 
 .label-btns {
-  ::v-deep .ivu-btn {
+  /deep/ .ivu-btn {
     margin-right: 10px;
   }
 }

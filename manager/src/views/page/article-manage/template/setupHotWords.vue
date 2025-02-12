@@ -116,7 +116,7 @@ export default {
   width:500px;
   justify-content:space-between;
 }
-::v-deep .ivu-input {
+/deep/ .ivu-input {
   width: 100px !important;
 }
 .ivu-input-wrapper {

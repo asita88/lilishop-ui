@@ -211,7 +211,7 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-::v-deep .ivu-col {
+/deep/ .ivu-col {
   min-height: 100vh;
 }
 </style>

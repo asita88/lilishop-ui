@@ -124,7 +124,7 @@ export default {
   margin-right: 10px;
 }
 
-::v-deep .ivu-input {
+/deep/ .ivu-input {
   width: 100px !important;
 }
 

@@ -782,7 +782,7 @@ export default {
       z-index: 2;
     }
   }
-  ::v-deep .box {
+  /deep/ .box {
     color: #fff;
     position: absolute;
 

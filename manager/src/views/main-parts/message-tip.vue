@@ -66,16 +66,16 @@ export default {
 };
 </script>
 <style scoped lang="scss">
-::v-deep .ivu-select-dropdown {
+/deep/ .ivu-select-dropdown {
   text-align: left;
 }
 .message-con {
   margin-right: 10px;
 }
-::v-deep .ivu-dropdown-item{
+/deep/ .ivu-dropdown-item{
   padding: 7px 20px  !important;
 }
-::v-deep .ivu-badge-count{
+/deep/ .ivu-badge-count{
   right: -10px !important;
 }
 </style>

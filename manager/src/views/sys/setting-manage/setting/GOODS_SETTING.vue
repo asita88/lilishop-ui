@@ -188,7 +188,7 @@ export default {
 .label-item {
   display: flex;
 }
-::v-deep .ivu-input {
+/deep/ .ivu-input {
   width: 100px !important;
 }
 </style>

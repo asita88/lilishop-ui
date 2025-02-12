@@ -133,7 +133,7 @@ export default {
   margin-right: 20px;
   display: flex;
   margin-bottom: 20px;
-  ::v-deep .ivu-card-body {
+  /deep/ .ivu-card-body {
     padding: 0 16px !important;
   }
 }
@@ -151,7 +151,7 @@ export default {
   padding-bottom: 10px;
   flex-direction: column;
   align-items: center;
-  ::v-deep .ivu-btn {
+  /deep/ .ivu-btn {
     width: 100px;
   }
 }

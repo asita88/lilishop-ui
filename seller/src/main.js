@@ -1,6 +1,14 @@
 import Vue from "vue";
 import ViewUI from "view-design";
+import VueI18n from "vue-i18n";
+import en from "view-design/dist/locale/en-US";
+import zh from "view-design/dist/locale/zh-CN";
+import US from "./locale/en-US";
+import CN from "./locale/zh-CN";
+
+
 import "./styles/theme.less";
+
 
 import "core-js/stable";
 import vueQr from "vue-qr";
@@ -31,8 +39,27 @@ import {md5} from "@/utils/md5.js";
 const {aMapSecurityJsCode, inputMaxLength,mainColor} = require("@/config");
 // 打印
 import Print from 'vue-print-nb';
-
 Vue.use(Print);
+
+Vue.use(VueI18n);
+Vue.locale = () => {};
+const messages = {
+  en: Object.assign(US, en),
+  zh: Object.assign(CN, zh)
+};
+
+const i18n = new VueI18n({
+  locale: window.localStorage.getItem("language") || "zh",
+  messages
+});
+
+Vue.use(ViewUI, {
+  i18n: (key, value) => i18n.t(key, value)
+});
+
+
+
+
 // 高德安全密钥
 if (aMapSecurityJsCode) {
   window._AMapSecurityConfig = {
@@ -105,6 +132,7 @@ Object.keys(filters).forEach(key => {
 new Vue({
   el: "#app",
   router,
+  i18n,//不配置不会生效
   store,
   render: h => h(App),
   data: {
