@@ -11,13 +11,13 @@
       </div>
     </div>
     <div class="content">
-      <div class="pay-way">{{params.paymentMethod === 'ALIPAY' ? '支付宝支付' : '微信支付'}}</div>
+      <div class="pay-way">{{params.paymentMethod === 'TRC' ? 'TRC支付' : 'ERC支付'}}</div>
       <div class="qrcode">
         <div style="width:200px;height:200px;border:1px solid #eee;">
           <vue-qr :text="qrcode" :margin="0" colorDark="#000" colorLight="#fff" :size="200"></vue-qr>
         </div>
         <div class="intro">
-          <Icon type="md-qr-scanner" /> 请使用{{params.paymentMethod === 'ALIPAY' ? '支付宝' : '微信'}}扫码付款
+          <Icon type="md-qr-scanner" /> 请使用{{params.paymentMethod === 'TRC' ? 'TRC' : 'ERC'}}扫码付款
         </div>
       </div>
       <div class="btn-div">
@@ -52,6 +52,7 @@ export default {
       pay(params).then(res => {
         if (res.success) {
           this.qrcode = res.result;
+          //result
           this.num = 0;
           this.interval = setInterval(this.callback, 5000);
         } else {

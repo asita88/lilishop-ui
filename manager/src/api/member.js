@@ -137,3 +137,13 @@ export const editMemberAddress = (params) => {
 export const getMemberWallet = (params) => {
   return getRequest(`/wallet/wallet`, params);
 };
+
+//查询会员预存款
+export const getMemberCoin = (params) => {
+  return getRequest(`/member/coin/getByPage`, params);
+};
+
+//查询会员预存款
+export const getMemberCoinLog = (params) => {
+  return getRequest(`/member/coin/getLogByPage`, params);
+};

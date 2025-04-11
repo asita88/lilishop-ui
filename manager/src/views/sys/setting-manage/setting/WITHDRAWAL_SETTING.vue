@@ -14,8 +14,8 @@
 
       <FormItem label="提现方式" prop="type">
         <RadioGroup v-model="formValidate.type">
-          <Radio label="WECHAT">微信</Radio>
-          <Radio label="ALI">支付宝</Radio>
+          <Radio label="ETC/USDT">ETC/USDT</Radio>
+          <Radio label="ETC/USDT">ETC/USDT</Radio>
         </RadioGroup>
       </FormItem>
 

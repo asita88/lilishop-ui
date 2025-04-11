@@ -68,8 +68,6 @@ export default {
       formValidate: {}, // 表单数据
       // key obj
       payWay: { // 支付方式
-        ALIPAY: "支付宝支付",
-        WECHAT: "微信支付",
         WALLET: "余额支付",
       },
       supportForm: "", // 支持的支付方式

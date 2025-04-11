@@ -245,33 +245,6 @@ export const result = [{
         ]
       },
       {
-        name: "lives",
-        level: 1,
-        type: 0,
-        title: "直播活动",
-        path: "/promotion",
-        component: "Main",
-        children: [{
-            name: "live",
-            level: 2,
-            type: 0,
-            title: "直播管理",
-            path: "live",
-            component: "promotion/live/live",
-            children: null
-          },
-          {
-            name: "liveGoods",
-            level: 2,
-            type: 0,
-            title: "直播商品",
-            path: "liveGoods",
-            component: "promotion/live/liveGoods",
-            children: null
-          }
-        ]
-      },
-      {
         name: "storePromotion",
         level: 1,
         type: 0,

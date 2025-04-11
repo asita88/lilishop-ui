@@ -37,29 +37,14 @@
               <Icon type="md-lock" slot="prepend"> </Icon>
             </i-input>
           </FormItem>
-          <FormItem prop="mobilePhone">
+          <FormItem prop="usermail">
             <i-input
               type="text"
-              v-model="formRegist.mobilePhone"
+              v-model="formRegist.userMail"
               clearable
-              placeholder="手机号"
+              placeholder="邮箱"
             >
               <Icon type="md-phone-portrait" slot="prepend"></Icon>
-            </i-input>
-          </FormItem>
-          <FormItem prop="code">
-            <i-input
-              type="text"
-              v-model="formRegist.code"
-              clearable
-              placeholder="手机验证码"
-            >
-              <Icon
-                type="ios-text-outline"
-                style="font-weight: bold"
-                slot="prepend"
-              />
-              <Button slot="append" @click="sendCode">{{ codeMsg }}</Button>
             </i-input>
           </FormItem>
           <FormItem>
@@ -112,7 +97,7 @@ export default {
       year: new Date().getFullYear(),
       formRegist: {
         // 注册表单
-        mobilePhone: '',
+        userMail: '',
         code: '',
         username: '',
         password: ''
@@ -124,12 +109,12 @@ export default {
           { required: true, message: '请输入密码' },
           { type: 'string', min: 6, message: '密码不能少于6位' }
         ],
-        mobilePhone: [
-          { required: true, message: '请输入手机号码' },
+        userMail: [
+          { required: true, message: '请输入邮箱' },
           {
-            pattern: RegExp.mobile,
+            pattern: RegExp.email,
             trigger: 'blur',
-            message: '请输入正确的手机号'
+            message: '请输入正确的邮箱'
           }
         ],
         code: [{ required: true, message: '请输入手机验证码' }]
@@ -158,42 +143,6 @@ export default {
           });
         } else {}
       });
-    },
-    // 发送短信验证码
-    sendCode () {
-      if (this.time === 60) {
-        if (this.formRegist.mobilePhone === '') {
-          this.$Message.warning('请先填写手机号');
-          return;
-        }
-        if (!this.verifyStatus) {
-          this.$Message.warning('请先完成安全验证');
-          return;
-        }
-        let params = {
-          mobile: this.formRegist.mobilePhone,
-          verificationEnums: 'REGISTER'
-        };
-        sendSms(params).then(res => {
-          if (res.success) {
-            this.$Message.success('验证码发送成功');
-            let that = this;
-            this.interval = setInterval(() => {
-              that.time--;
-              if (that.time === 0) {
-                that.time = 60;
-                that.codeMsg = '重新发送';
-                that.verifyStatus = false;
-                clearInterval(that.interval);
-              } else {
-                that.codeMsg = that.time;
-              }
-            }, 1000);
-          } else {
-            this.$Message.warning(res.message);
-          }
-        });
-      }
     },
     // 图片验证码成功回调
     verifyChange (con) {

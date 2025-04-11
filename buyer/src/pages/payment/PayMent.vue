@@ -22,17 +22,17 @@
       </div>
     </div>
     <div class="wrapper-box">
-      <div v-if="support.includes('ALIPAY')" class="-box-item" @click="handlePay('ALIPAY')">
+      <div v-if="support.includes('TRC')" class="-box-item" @click="handlePay('TRC')">
         <img
           src="https://ss3.bdstatic.com/yrwDcj7w0QhBkMak8IuT_XF5ehU5bvGh7c50/logopic/a9936a369e82e0c6c42112674a5220e8_fullsize.jpg"
           alt="">
-        <span>支付宝</span>
+        <span>TRC</span>
       </div>
-      <div v-if="support.includes('WECHAT')" class="-box-item" @click="handlePay('WECHAT')">
+      <div v-if="support.includes('ERC')" class="-box-item" @click="handlePay('ERC')">
         <img
           src="https://dss1.bdstatic.com/6OF1bjeh1BF3odCf/it/u=3774939867,2826752539&fm=74&app=80&f=JPEG&size=f121,121?sec=1880279984&t=796e842a5ef2d16d9edc872d6f1147ef"
           alt="">
-        <span>微信</span>
+        <span>ERC</span>
       </div>
       <div v-if="support.includes('WALLET') && $route.query.orderType !== 'RECHARGE'" class="-box-item" @click="handlePay('WALLET')">
         <Icon custom="icomoon icon-wallet" size="60"/>
@@ -48,10 +48,12 @@
 import {tradeDetail, pay} from '@/api/pay.js';
 import MvCountDown from 'mv-count-down'
 import {Message} from 'view-design';
+import vueQr from "vue-qr";
 
 export default {
   components: {
-    MvCountDown
+    MvCountDown,
+    vueQr
   },
   data () {
     return {

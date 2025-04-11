@@ -15,8 +15,10 @@
           <Form-item label="支付方式" prop="orderStatus">
             <Select v-model="searchForm.paymentMethod" placeholder="请选择" clearable style="width: 200px">
               <Option value="">全部</Option>
+              <!-- 
               <Option value="WECHAT">微信</Option>
-              <Option value="ALIPAY">支付宝</Option>
+              <Option value="ALIPAY">支付宝</Option> 
+              -->
               <Option value="WALLET">余额</Option>
               <Option value="BANK_TRANSFER">银行转账</Option>
 

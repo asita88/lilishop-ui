@@ -9,6 +9,8 @@ import IM_SETTING from "./setting/IM_SETTING";
 import WITHDRAWAL_SETTING from "./setting/WITHDRAWAL_SETTING";
 import ALIPAY_PAYMENT from "./pay/ALIPAY_PAYMENT";
 import WECHAT_PAYMENT from "./pay/WECHAT_PAYMENT";
+import ERC_PAYMENT from "./pay/ERC_PAYMENT";
+import TRC_PAYMENT from "./pay/TRC_PAYMENT";
 import PAYMENT_SUPPORT from "./pay/PAYMENT_SUPPORT";
 import WECHAT_CONNECT from "./authLogin/WECHAT_CONNECT";
 import QQ_CONNECT from "./authLogin/QQ_CONNECT";
@@ -27,6 +29,8 @@ export default {
   PAYMENT_SUPPORT,
   WECHAT_PAYMENT,
   ALIPAY_PAYMENT,
+  ERC_PAYMENT,
+  TRC_PAYMENT,
   WECHAT_CONNECT,
   CONNECT_SETTING,
   QQ_CONNECT

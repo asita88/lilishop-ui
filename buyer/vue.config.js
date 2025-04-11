@@ -81,7 +81,15 @@ module.exports = {
     }
   },
   devServer: {
-    port: configs.port
+    port: configs.port,
+    proxy: {
+      '/buyer': {
+        target: 'http://127.0.0.1:8888', // 目标服务器
+        changeOrigin: true,
+        // pathRewrite: { '^/api': '' },
+        secure: false, // 如果是HTTPS请求，需要设置为false
+      }
+    }
   },
 
   // 打包时不生成.map文件 避免看到源码

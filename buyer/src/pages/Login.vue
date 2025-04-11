@@ -21,55 +21,15 @@
       <div class="form-box" @click='$refs.verify.show = false'>
         <div class="account-number">
           <div class="tab-switch">
-            <span>{{ type ? '账号登录' : '验证码登录' }}</span>
-            <span @click="type = !type,scannerCodeLoginFLag=false">{{ type ? '验证码登录' : '账号登录' }}</span>
+            <span>账号登录</span>
           </div>
           <!---->
-          <div @click="scannerCodeLoginFLag=!scannerCodeLoginFLag">{{!scannerCodeLoginFLag ? '扫码登录' : '返回'}}</div>
-        </div>
-        <!--扫码登录-->
-        <div v-show="scannerCodeLoginFLag">
-          <div class="qr-container">
-            <div class='qr-shadow flex' v-show="qrCodeStatus == 'fail'">
-              <span>
-                二维码已失效
-              </span>
-              <Button size='small' @click="createPCLoginSession">刷新二维码</Button>
-            </div>
-            <vue-qr
-              :text="qrCode"
-              :margin="0"
-              colorDark="#000"
-              colorLight="#fff"
-              :size="150"
-            ></vue-qr>
-          </div>
-          <div class="drag-area">
-          <!--    等待扫码-->
-          <div v-if="scannerCodeLoginStatus === 0" class="pending-scan">
-            <p>打开手机App/小程序，扫码登录</p>
-          </div>
-          <!--    已经扫码-->
-          <div v-else-if="scannerCodeLoginStatus === 1" class="scanned">
-            <p>扫码成功，等待确认</p>
-          </div>
-
-          <!--    存在session，等待发送给客户端验证-->
-          <div v-if="scannerCodeLoginStatus === 2" class="scanned">
-            <p>登录成功，正在页面跳转</p>
-          </div>
-
-          <!--    已经发送登录请求-->
-          <div v-else-if="scannerCodeLoginStatus === 3" class="quick-logining">
-            <p>取消登录</p>
-          </div>
-        </div>
         </div>
 
         <div>
-          <div v-show="!scannerCodeLoginFLag">
+          <div>
           <!-- 账号密码登录 -->
-          <Form ref="formInline" :model="formData" :rules="ruleInline" v-show="type === true"
+          <Form ref="formInline" :model="formData" :rules="ruleInline"
                 @click.self='$refs.verify.show = false'>
             <FormItem prop="username">
               <i-input type="text" v-model="formData.username" clearable placeholder="用户名">
@@ -85,32 +45,9 @@
               <Button type="error" @click.stop="handleSubmit('formInline')" long>登录</Button>
             </FormItem>
           </Form>
-          <!-- 验证码登录 -->
-          <Form ref="formSms" :model="formSms" :rules="ruleInline" v-show="type === false"
-                @click.self='$refs.verify.show = false'>
-            <FormItem prop="mobile">
-              <i-input type="text" v-model="formSms.mobile" clearable placeholder="手机号">
-                <Icon type="md-lock" slot="prepend"></Icon>
-              </i-input>
-            </FormItem>
-            <FormItem prop="code">
-              <i-input type="text" v-model="formSms.code" placeholder="手机验证码">
-                <Icon type="ios-text-outline" style="font-weight: bold" slot="prepend"/>
-                <Button slot="append" @click="sendCode">{{ codeMsg }}</Button>
-              </i-input>
-            </FormItem>
-            <FormItem>
-              <Button @click.stop="verifyBtnClick" long
-                      :type="verifyStatus?'success':'default'">{{ verifyStatus ? '验证通过' : '点击完成安全验证' }}
-              </Button>
-            </FormItem>
-            <FormItem>
-              <Button type="error" @click="handleSubmit('formSms')" long>登录</Button>
-            </FormItem>
-          </Form>
         </div>
           <div class="other">
-            <div class="other-login">
+            <!-- <div class="other-login">
               <svg t="1631154795933" class="icon" @click="handleWebLogin('QQ')" viewBox="0 0 1024 1024" version="1.1"
                   xmlns="http://www.w3.org/2000/svg" p-id="4969" width="32" height="32">
                 <path
@@ -124,7 +61,7 @@
                   d="M683.058 364.695c11 0 22 1.016 32.943 1.976C686.564 230.064 538.896 128 370.681 128c-188.104 0.66-342.237 127.793-342.237 289.226 0 93.068 51.379 169.827 136.725 229.256L130.72 748.43l119.796-59.368c42.918 8.395 77.37 16.79 119.742 16.79 11 0 21.46-0.48 31.914-1.442a259.168 259.168 0 0 1-10.455-71.358c0.485-148.002 128.744-268.297 291.403-268.297l-0.06-0.06z m-184.113-91.992c25.99 0 42.913 16.79 42.913 42.575 0 25.188-16.923 42.579-42.913 42.579-25.45 0-51.38-16.85-51.38-42.58 0-25.784 25.93-42.574 51.38-42.574z m-239.544 85.154c-25.384 0-51.374-16.85-51.374-42.58 0-25.784 25.99-42.574 51.374-42.574 25.45 0 42.918 16.79 42.918 42.575 0 25.188-16.924 42.579-42.918 42.579z m736.155 271.655c0-135.647-136.725-246.527-290.983-246.527-162.655 0-290.918 110.88-290.918 246.527 0 136.128 128.263 246.587 290.918 246.587 33.972 0 68.423-8.395 102.818-16.85l93.809 50.973-25.93-84.677c68.907-51.93 120.286-119.815 120.286-196.033z m-385.275-42.58c-16.923 0-34.452-16.79-34.452-34.179 0-16.79 17.529-34.18 34.452-34.18 25.99 0 42.918 16.85 42.918 34.18 0 17.39-16.928 34.18-42.918 34.18z m188.165 0c-16.984 0-33.972-16.79-33.972-34.179 0-16.79 16.927-34.18 33.972-34.18 25.93 0 42.913 16.85 42.913 34.18 0 17.39-16.983 34.18-42.913 34.18z"
                   fill="#09BB07" p-id="3845"></path>
               </svg>
-            </div>
+            </div> -->
             <div class="register">
               <span style="color:red" @click="$router.push('signUp')">还没有账号？点击立即注册</span>
               <span @click="$router.push('forgetPassword')">忘记密码</span>
@@ -198,11 +135,11 @@ export default {
           {required: true, message: "请输入密码"},
           {type: "string", min: 6, message: "密码不能少于6位"},
         ],
-        mobile: [
-          {required: true, message: "请输入手机号码"},
+        usermail: [
+          {required: true, message: "请输入邮箱"},
           {
-            pattern: RegExp.mobile,
-            message: "请输入正确的手机号",
+            pattern: RegExp.email,
+            message: "请输入正确的邮箱",
           },
         ],
         code: [{required: true, message: "请输入手机验证码"}],

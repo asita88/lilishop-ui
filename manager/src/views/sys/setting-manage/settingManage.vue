@@ -66,18 +66,14 @@ export default {
       authLogin: [
         // 登录设置
         {type: "CONNECT_SETTING", name: "登录设置"},
-        // 微信设置
-        {type: "WECHAT_CONNECT", name: "微信设置"},
-        // QQ设置
-        {type: "QQ_CONNECT", name: "QQ设置"},
       ],
       pay: [
-        //支付宝支付设置
+        //支付设置
         {type: "PAYMENT_SUPPORT", name: "支付开启/关闭"},
-        //支付宝支付设置
-        {type: "ALIPAY_PAYMENT", name: "支付宝支付设置"},
-        //微信支付设置
-        {type: "WECHAT_PAYMENT", name: "微信支付设置"},
+        //TRC支付设置
+        {type: "TRC_PAYMENT", name: "TRC支付设置"},
+        //ERC支付设置
+        {type: "ERC_PAYMENT", name: "ERC支付设置"},
       ],
       tabWay: [], // tab数据
     };

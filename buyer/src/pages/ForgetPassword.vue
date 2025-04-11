@@ -18,12 +18,12 @@
           style="width:300px;"
           v-show="step === 0"
         >
-          <FormItem prop="mobile">
+          <FormItem prop="usermail">
             <i-input
               type="text"
-              v-model="formFirst.mobile"
+              v-model="formFirst.usermail"
               clearable
-              placeholder="手机号"
+              placeholder="邮箱"
             >
               <Icon type="md-phone-portrait" slot="prepend"></Icon>
             </i-input>
@@ -33,7 +33,7 @@
               type="text"
               v-model="formFirst.code"
               clearable
-              placeholder="手机验证码"
+              placeholder="手机邮箱"
             >
               <Icon
                 type="ios-text-outline"
@@ -124,7 +124,7 @@ export default {
       loading1: false, // 第二步加载状态
       formFirst: { // 手机验证码表单
         // 注册表单
-        mobile: '',
+        usermail: '',
         code: ''
       },
       form: { // 密码
@@ -135,12 +135,12 @@ export default {
       step: 0, // 步骤
       ruleInline: {
         // 验证规则
-        mobile: [
-          { required: true, message: '请输入手机号码' },
+        usermail: [
+          { required: true, message: '请输入邮箱' },
           {
-            pattern: RegExp.mobile,
+            pattern: RegExp.email,
             trigger: 'blur',
-            message: '请输入正确的手机号'
+            message: '请输入正确的邮箱'
           }
         ],
         code: [{ required: true, message: '请输入手机验证码' }],

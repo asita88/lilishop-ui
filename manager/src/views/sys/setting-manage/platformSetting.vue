@@ -507,66 +507,6 @@
           }
         });
       },
-      // 保存微信设置
-      saveWechat() {
-        this.$refs.wechatForm.validate(valid => {
-          if (valid) {
-            this.saveLoading = true;
-            this.wechat.id = 'wechat'
-            editParams(this.wechat, 'wechat').then(res => {
-              this.saveLoading = false;
-              if (res.success) {
-                this.$Message.success("保存成功");
-              }
-            });
-          }
-        });
-      },
-      // 保存qq设置
-      saveQQ() {
-        this.$refs.qqForm.validate(valid => {
-          if (valid) {
-            this.saveLoading = true;
-            this.qq.id = 'qq'
-            editParams(this.qq, 'qq').then(res => {
-              this.saveLoading = false;
-              if (res.success) {
-                this.$Message.success("保存成功");
-              }
-            });
-          }
-        });
-      },
-      // 保存微博设置
-      saveWeibo() {
-        this.$refs.wechatForm.validate(valid => {
-          if (valid) {
-            this.saveLoading = true;
-            this.weibo.id = 'weibo'
-            editParams(this.weibo, 'weibo').then(res => {
-              this.saveLoading = false;
-              if (res.success) {
-                this.$Message.success("保存成功");
-              }
-            });
-          }
-        });
-      },
-      // 保存支付宝设置
-      saveAlipay() {
-        this.$refs.alipayForm.validate(valid => {
-          if (valid) {
-            this.saveLoading = true;
-            this.alipay.id = 'alipay'
-            editParams(this.alipay, 'alipay').then(res => {
-              this.saveLoading = false;
-              if (res.success) {
-                this.$Message.success("保存成功");
-              }
-            });
-          }
-        });
-      }
     },
     mounted() {
       let name = this.$route.query.name;
